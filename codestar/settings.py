@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-gwwtsc$!h)h%qbb*i3#lq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True  # Temporarily set to True for debugging
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*.herokuapp.com', '.herokuapp.com']
 
 
 # Application definition
@@ -50,7 +50,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -140,10 +139,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Simplified static files configuration for Heroku
-STATICFILES_DIRS = []
-
-# Remove any duplicate STATICFILES_DIRS definitions below this line
+# WhiteNoise configuration for Heroku
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
